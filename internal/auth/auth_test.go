@@ -11,7 +11,7 @@ func TestGetAPIKey_Empty(t *testing.T) {
 	fmt.Println("========================")
 	fmt.Println("TestGetAPIKey_Empty")
 	fmt.Println("========================")
-	noResponseHeader := http.Header {}
+	noResponseHeader := http.Header{}
 
 	res, err := GetAPIKey(noResponseHeader)
 
@@ -22,29 +22,27 @@ func TestGetAPIKey_Empty(t *testing.T) {
 	}
 }
 
-
 func TestGetAPIKey_Not_ApiKey(t *testing.T) {
 	fmt.Println("========================")
 	fmt.Println("TestGetAPIKey_Not_ApiKey")
 	fmt.Println("========================")
-	noResponseHeader := http.Header {}
+	noResponseHeader := http.Header{}
 	noResponseHeader.Add("Authorization", "Faki 12313123123123")
 
 	res, err := GetAPIKey(noResponseHeader)
 
-	if err != nil  && res == "" {
+	if err != nil && res == "" {
 		fmt.Printf("PASSED! Returns error: %s\n", err)
 	} else {
 		t.Errorf("ApiKey not used")
 	}
 }
 
-
 func TestGetAPIKey_ProperApiKey(t *testing.T) {
 	fmt.Println("========================")
 	fmt.Println("TestGetAPIKey_ProperApiKey")
 	fmt.Println("========================")
-	noResponseHeader := http.Header {}
+	noResponseHeader := http.Header{}
 	noResponseHeader.Add("Authorization", "ApiKey 12313123123123")
 
 	res, err := GetAPIKey(noResponseHeader)
@@ -56,7 +54,7 @@ func TestGetAPIKey_ProperApiKey(t *testing.T) {
 		if res == "12313123123123" {
 			fmt.Println("PASSED! Returns proper API key")
 		} else {
-		t.Errorf("Authorization malformed: %s", res)
+			t.Errorf("Authorization malformed: %s", res)
 		}
 	}
 }
